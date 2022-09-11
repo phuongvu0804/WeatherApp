@@ -1,6 +1,7 @@
 const apiKeyWeather = "770de780ae88163d36266e3e2b0835f2";
 const apiKeyLocation = "T5LHuF1z6+qQ3rY3oJ993w==NG6SjZHK9qkF26q6";
 
+const app = document.getElementById("weather-app");
 const currentLocation = document.querySelector(".content__location");
 const currentWeather = document.querySelector(".main-info__content h2");
 const currentTemp = document.querySelector(".main-info__content p");
@@ -13,6 +14,7 @@ const mainContent = document.querySelector(".content__main-info");
 
 let currentTempData = {};
 let isCelcius = true;
+let isLoading = true;
 let darkTheme = true;
 
 const convertTempToCel = (temp) => {
@@ -57,7 +59,10 @@ const fetchWeatherData = (lat, lon) => {
 
     fetch(weatherApi)
         .then((response) => response.json())
-        .then((data) =>{
+        .then((data) => {
+            isLoading = false;
+            console.log(isLoading)
+            handleLoading();
             currentTempData = {
                 location: data.name,
                 temp: data.main.temp,
@@ -76,7 +81,6 @@ const fetchWeatherData = (lat, lon) => {
 const getCurrentWeatherData = () => {
       //If user allows to locate position
       if(navigator.geolocation) {
-
         let lon;
         let lat;
         navigator.geolocation.getCurrentPosition((position) => {
@@ -89,6 +93,7 @@ const getCurrentWeatherData = () => {
 };
 
 window.addEventListener("load", () => {
+    isLoading = true
     getCurrentWeatherData();
 });
 
@@ -166,3 +171,25 @@ const handleChangeTheme = (theme) => {
 
     };
 };
+
+//Handle page's loading
+const handleLoading = () => {    
+    const loader = document.querySelector(".loader");
+    if (isLoading) {
+        if (!loader) {
+            const loader = document.createElement("div");
+            loader.classList.add("loader");
+            app.insertBefore(loader, app.children[1]);
+            document.querySelector(".app__content").style.display = "none";
+        }
+    } else {
+        document.querySelector(".app__content").style.display = "block";
+        if (loader) {
+            app.removeChild(loader)
+        };
+        
+
+    }
+};
+
+handleLoading()
