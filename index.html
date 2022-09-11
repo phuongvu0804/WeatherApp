@@ -19,7 +19,7 @@
     <title>Weather App</title>
 </head>
 <body>
-    <div id="weather-app" class="light">
+    <div id="weather-app">
         <div class="app__head">
             <div class="app-head__location">
                 <div class="location__select-btn">
@@ -31,10 +31,10 @@
                 </div>
             </div>
             <div class="app-head__theme">
-                <button class="theme__select-btn" onclick="handleChangeTheme(false)">
+                <button class="theme__select-btn" id="light" onclick="handleChangeTheme(false)">
                     <i class="theme-select-btn__icon fa-sharp fa-solid fa-sun"></i>
                 </button>
-                <button class="theme__select-btn" onclick="handleChangeTheme(true)">
+                <button class="theme__select-btn" id="dark" onclick="handleChangeTheme(true)">
                     <i class="theme-select-btn__icon fa-solid fa-moon"></i>
                 </button>
             </div>

@@ -142,13 +142,30 @@ document.querySelector(".app-foot__btn.app-foot__btn--home").onclick = () => {
 }
 
 //Change dark/light theme
-const handleChangeTheme = (theme) => {    
+const handleStyleTheme = () => {
+    console.log(darkTheme)
+    if (darkTheme) {
+        document.querySelector(".theme__select-btn#dark").classList.add("active");
+        document.querySelector(".theme__select-btn#light").classList.remove("active");
+    } else {
+        document.querySelector(".theme__select-btn#dark").classList.remove("active");
+        document.querySelector(".theme__select-btn#light").classList.add("active");
+    }
+
+}
+
+handleStyleTheme();
+
+const handleChangeTheme = (theme) => {   
+
     if (theme) {
-        darkTheme = !darkTheme;
+        darkTheme = true;
+        handleStyleTheme();
         document.querySelector("#weather-app").classList.remove("light")
 
     } else {
-        darkTheme = !darkTheme;
+        darkTheme = false;
+        handleStyleTheme();
         document.querySelector("#weather-app").classList.add("light")
 
     }
