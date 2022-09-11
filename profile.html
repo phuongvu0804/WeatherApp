@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="./assets/main-style.css"/>
     <link rel="stylesheet" href="./assets/profile-style.css"/>
-    <title>Document</title>
+    <title>Weather App</title>
 </head>
 <body>
     <div class="weather-app weather-app--profile">
@@ -49,61 +49,21 @@
                 <div class="profile__current-weather">
                     <h3 class="profile__sub-title">Current location</h3>
                     <div class="profile__weather-card profile__weather-card--curent">
-                        <p class="weather-card__title">Espoo</p>
-                        <span class="weather-card__content">10 F</span>
+                        <p class="weather-card__title"></p>
+                        <span class="weather-card__content"></span>
                     </div>
                 </div>
                 <div class="profile__search-history">
                     <h3 class="profile__sub-title">Search history</h3>
                     <div class="profile__search-history-list">
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
-                        <div class="profile__weather-card">
-                            <p class="weather-card__title">Vantaa</p>
-                            <span class="weather-card__content">10 F</span>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="app__foot">
-            <button class="app-foot__btn app-foot__btn--home">
+            <a class="app-foot__btn app-foot__btn--home" href="./index.html">
                 <i class="fa-solid fa-house"></i>
-            </button>
+            </a>
             <button class="app-foot__btn app-foot__btn--search">
                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
             </button>
@@ -112,6 +72,6 @@
             </a>
         </div>
     </div>
-    <script src="./profile.js"></script>
+    <script type="module" src="./profile.js"></script>
 </body>
 </html>
