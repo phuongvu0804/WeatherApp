@@ -65,9 +65,9 @@ const fetchWeatherData = (lat, lon) => {
         });
 }
 
-window.addEventListener("load", () => {
-    //If user allows to locate position
-    if(navigator.geolocation) {
+const getCurrentWeatherData = () => {
+      //If user allows to locate position
+      if(navigator.geolocation) {
 
         let lon;
         let lat;
@@ -77,8 +77,13 @@ window.addEventListener("load", () => {
             
             fetchWeatherData(lat, lon)
         }, (error) => errorMsg.innerText = error)
-    }
+    }  
+}
+
+window.addEventListener("load", () => {
+    getCurrentWeatherData()
 })
+
 
 //Search location
 document.querySelector(".app-foot__btn.app-foot__btn--search").onclick = () => {
@@ -119,3 +124,7 @@ mainContent.onclick = () => {
 } 
 
 
+//Back to home function
+document.querySelector(".app-foot__btn.app-foot__btn--home").onclick = () => {
+    getCurrentWeatherData();
+}
