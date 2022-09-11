@@ -45,6 +45,7 @@ button:focus {
 #weather-app.light {
     background-color: var(--white);
     color: var(--primary);
+    border: 1px solid var(--primary);
 }
 
 .app__head {
@@ -76,6 +77,7 @@ button:focus {
 
 #weather-app.light .location__input {
     background-color: var(--white);
+    color: var(--active-color);
     border-color: var(--primary);
 }
 
