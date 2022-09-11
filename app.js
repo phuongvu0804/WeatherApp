@@ -1,4 +1,4 @@
-import { convertTempToCel, convertTempToFah, convertToKmPerHour } from "./constants.js";
+import { convertKelvinToCel, convertKelvinToFah, convertToKmPerHour } from "./constants.js";
 
 const apiKeyWeather = "770de780ae88163d36266e3e2b0835f2";
 const apiKeyLocation = "T5LHuF1z6+qQ3rY3oJ993w==NG6SjZHK9qkF26q6";
@@ -22,12 +22,12 @@ let darkTheme = true;
 
 const handleDisplayData = (data) => {
     currentLocation.innerText = data.name;
-    currentTemp.innerText = `${convertTempToCel(data.main.temp)}°C`;
+    currentTemp.innerText = `${convertKelvinToCel(data.main.temp)}°C`;
     currentWeather.innerText = data.weather[0].main
 
     windData.innerText = `${convertToKmPerHour(data.wind.speed)} km/h`;
     cloudData.innerText = `${data.clouds.all}%`;
-    feelLikeData.innerText = `${convertTempToCel(data.main.feels_like)}°C`;
+    feelLikeData.innerText = `${convertKelvinToCel(data.main.feels_like)}°C`;
 }
 
 const handleDisplayError = (error) => {
@@ -204,11 +204,11 @@ document.querySelector(".location__btn").onclick = () => {
 mainContent.onclick = () => { 
     if (isCelcius) {
         isCelcius= !isCelcius;
-        const fahTemp = convertTempToFah(currentTempData.temp);
+        const fahTemp = convertKelvinToFah(currentTempData.temp);
         currentTemp.innerText = fahTemp + "°F";
     } else {
         isCelcius = !isCelcius;
-        const celTemp = convertTempToCel(currentTempData.temp);
+        const celTemp = convertKelvinToCel(currentTempData.temp);
         currentTemp.innerText = celTemp + "°C";
 
     }

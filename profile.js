@@ -1,6 +1,6 @@
 
 
-import { convertTempToCel, convertFahToCel, convertCelToFah } from "./constants.js";
+import { convertKelvinToCel, convertFahToCel, convertCelToFah } from "./constants.js";
 
 
 //For profile page
@@ -12,7 +12,7 @@ const searchHistory = document.querySelector(".profile__search-history-list");
 const displayCurrentLocation = (data) => {
     //Display current location's weather
     document.querySelector(".profile__weather-card--curent .weather-card__title").innerText = data.location;
-    document.querySelector(".profile__weather-card--curent .weather-card__content").innerText = `${convertTempToCel(data.temp)}°C`;
+    document.querySelector(".profile__weather-card--curent .weather-card__content").innerText = `${convertKelvinToCel(data.temp)}°C`;
 };
 
 const renderHTMLs = () => {
@@ -21,7 +21,7 @@ const renderHTMLs = () => {
     return searchHistory.map(location => `
         <div class="profile__weather-card">
             <p class="weather-card__title">${location.location}</p>
-            <span class="weather-card__content">${convertTempToCel(location.temp)}°C</span>
+            <span class="weather-card__content">${convertKelvinToCel(location.temp)}°C</span>
         </div>`).join("");
     
 };
