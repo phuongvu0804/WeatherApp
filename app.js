@@ -187,9 +187,8 @@ const handleLoading = () => {
         if (loader) {
             app.removeChild(loader)
         };
-        
 
-    }
+    };
 };
 
-handleLoading()
+handleLoading();
