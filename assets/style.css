@@ -58,10 +58,14 @@ button:focus {
     margin: 0 10px;
     background: var(--hover-color);
     color: var(--white);
-    border: none;
+    border: 1px solid transparent;
     outline: none;
     appearance: none;
     border-radius: 4px;
+}
+
+.location__input:focus {
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .location__btn {
