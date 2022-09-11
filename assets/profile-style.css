@@ -1,0 +1,117 @@
+.profile__content .content__title{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.profile__img {
+    --img-size: 100px;
+    display: flex;
+    background: var(--hover-color);
+    width: var(--img-size);
+    height: var(--img-size);
+    margin: 20px auto;
+    border-radius: 50%;
+}
+
+.profile__img i {
+    margin: auto;
+    font-size: 50px;
+}
+
+.profile__current-weather {
+
+}
+
+.profile__sub-title {
+    font-size: 26px;
+    font-weight: 500;;
+
+}
+
+.profile__content {
+    margin: calc(var(--app-x-padding) + var(--app-head-height) + 30px) 0;
+}
+
+
+.profile__weather-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: var(--hover-color);
+}
+
+.weather-card__title {
+    font-size: 20px;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.weather-card__content {
+    font-size: 40px;
+
+}
+
+.profile__search-history {
+    margin-top: 30px;
+}
+
+.profile__search-history-list {
+    max-height: var(--search-history-height); ;
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--hover-color); 
+}
+  
+::-webkit-scrollbar-thumb {
+  background: var(--white); 
+}
+
+
+/* Responsive for Tablet */
+@media screen and (min-width: 740px) and (max-width: 1023px) {
+    :root {
+        --search-history-height: 340px;
+    }
+}
+
+
+/* Responsive for Mobile */
+@media screen and (max-width: 739px) {
+    :root {
+        --search-history-height: 160px;
+    }
+
+    .profile__img {
+        --img-size: 60px;
+    }
+
+    .profile__img i {
+        font-size: 30px;
+    }
+    
+    .profile__sub-title {
+        font-size: 20px;
+    }
+
+    .profile__weather-card {
+        padding: 4px 20px;
+    }
+
+    .weather-card__title {
+        font-size: 16px;
+    }
+
+    .weather-card__content {
+        font-size: 26px;
+    }
+}

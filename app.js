@@ -1,7 +1,7 @@
 const apiKeyWeather = "770de780ae88163d36266e3e2b0835f2";
 const apiKeyLocation = "T5LHuF1z6+qQ3rY3oJ993w==NG6SjZHK9qkF26q6";
 
-const app = document.getElementById("weather-app");
+const app = document.querySelector(".weather-app");
 const currentLocation = document.querySelector(".content__location");
 const currentWeather = document.querySelector(".main-info__content h2");
 const currentTemp = document.querySelector(".main-info__content p");
@@ -92,6 +92,28 @@ const getCurrentWeatherData = () => {
     };  
 };
 
+
+//Handle page's loading
+const handleLoading = () => {    
+    const loader = document.querySelector(".loader");
+    if (isLoading) {
+        if (!loader) {
+            const loader = document.createElement("div");
+            loader.classList.add("loader");
+            app.insertBefore(loader, app.children[1]);
+            document.querySelector(".app__content").style.display = "none";
+        }
+    } else {
+        document.querySelector(".app__content").style.display = "block";
+        if (loader) {
+            app.removeChild(loader)
+        };
+
+    };
+};
+
+handleLoading();
+
 window.addEventListener("load", () => {
     isLoading = true;
     getCurrentWeatherData();
@@ -167,33 +189,12 @@ const handleChangeTheme = (theme) => {
     if (theme) {
         darkTheme = true;
         handleStyleTheme();
-        document.querySelector("#weather-app").classList.remove("light");
+        document.querySelector(".weather-app").classList.remove("light");
 
     } else {
         darkTheme = false;
         handleStyleTheme();
-        document.querySelector("#weather-app").classList.add("light");
+        document.querySelector(".weather-app").classList.add("light");
 
     };
 };
-
-//Handle page's loading
-const handleLoading = () => {    
-    const loader = document.querySelector(".loader");
-    if (isLoading) {
-        if (!loader) {
-            const loader = document.createElement("div");
-            loader.classList.add("loader");
-            app.insertBefore(loader, app.children[1]);
-            document.querySelector(".app__content").style.display = "none";
-        }
-    } else {
-        document.querySelector(".app__content").style.display = "block";
-        if (loader) {
-            app.removeChild(loader)
-        };
-
-    };
-};
-
-handleLoading();
