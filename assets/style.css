@@ -54,14 +54,25 @@ button:focus {
 }
 
 .location__input {
+    padding: 2px 6px;
     margin: 0 10px;
-    background: transparent;
+    background: var(--hover-color);
     color: var(--white);
     border: none;
     outline: none;
     appearance: none;
+    border-radius: 4px;
 }
 
+.location__btn {
+    font-size: 18px;
+    border: transparent;
+    outline: none;
+    background: var(--hover-color);
+    color: var(--white);
+    padding: 4px 10px;
+    border-radius: 6px;
+}
 
 .app-head__theme {
     position: absolute;
@@ -109,12 +120,23 @@ button:focus {
     text-align: left;
 }
 
+.app__msg--error {
+    display: none;
+    font-size: 16px;
+}
+
+.d-block {
+    display: block !important;
+}
+
 .content__main-info {
     padding: 2vh 0;
 }
 
+
 .main-info__img img{
-    width: 100px;
+    --img-size: 100px;
+    width: var(--img-size);
 }
 
 .main-info__content h2 {
@@ -183,13 +205,27 @@ button:focus {
         padding: 16px 30px;
     }
 
+    .location__select-btn {
+        text-align: left;
+    }
+
     .location__input {
         font-size: 18px;
+        width: 150px;
+        margin: 0 4px;
     }
 
     .content__title {
         font-size: 30px;
         margin: 20px 0;
+    }
+
+    .main-info__img img {
+        --img-size: 60px;
+    }
+
+    .main-info__content p {
+        font-size: 30px;
     }
 
     .sub-info {

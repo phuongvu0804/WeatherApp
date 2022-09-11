@@ -24,12 +24,10 @@
             <div class="app-head__location">
                 <div class="location__select-btn">
                     <i class="location-select-btn__icon location-select-btn__icon--location fa-sharp fa-solid fa-location-dot"></i>
-                    <select name="" id="" class="location__input">
-                        <option>Hanoi</option>
-                        <option>Berlin</option>
-                        <option>LA</option>
-                    </select>
-                    <i class="location-select-btn__icon location-select-btn__icon—drop-down fa-sharp fa-solid fa-chevron-down"></i>
+                    <input class="location__input" />
+                    <button class="location__btn" type="submit" onClick="handleSearchLocation()">
+                        <i class="location-select-btn__icon fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
             </div>
             <div class="app-head__theme">
@@ -43,13 +41,14 @@
         </div>
         <div class="app__content">
             <h1 class="content__title">Today's report</h1>
-            <p class="content__location">Hanoi</p>
+            <p class="content__location"></p>
+            <div class="app__msg--error alert alert-danger" role="alert"></div>
             <div class="content__main-info">
                 <div class="main-info__img">
                     <img src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png" alt="">
                 </div>
                 <div class="main-info__content">
-                    <h2>It's cloudy</h2>
+                    <h2></h2>
                     <p></p>
                 </div>
             </div>
