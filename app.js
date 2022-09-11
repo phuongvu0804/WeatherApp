@@ -237,7 +237,7 @@ const handleStyleTheme = () => {
 handleStyleTheme();
 
 const handleChangeTheme = (theme) => {   
-
+    console.log(theme)
     if (theme) {
         darkTheme = true;
         handleStyleTheme();
@@ -250,3 +250,6 @@ const handleChangeTheme = (theme) => {
 
     };
 };
+
+document.querySelector(".theme__select-btn#light").onclick = () => handleChangeTheme(false);
+document.querySelector(".theme__select-btn#dark").onclick = () => handleChangeTheme(true);
