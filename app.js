@@ -66,7 +66,6 @@ const fetchWeatherData = (lat, lon) => {
 }
 
 window.addEventListener("load", () => {
-
     //If user allows to locate position
     if(navigator.geolocation) {
 
@@ -80,6 +79,11 @@ window.addEventListener("load", () => {
         }, (error) => errorMsg.innerText = error)
     }
 })
+
+//Search location
+document.querySelector(".app-foot__btn.app-foot__btn--search").onclick = () => {
+    locationSelection.focus();
+}
 
 const handleSearchLocation = () => {
     const searchInput = document.querySelector(".location__input").value;
@@ -113,3 +117,5 @@ mainContent.onclick = () => {
 
     }
 } 
+
+
