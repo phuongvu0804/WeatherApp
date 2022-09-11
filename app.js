@@ -61,7 +61,7 @@ const fetchWeatherData = (lat, lon) => {
         .then((response) => response.json())
         .then((data) => {
             isLoading = false;
-            console.log(isLoading)
+
             handleLoading();
             currentTempData = {
                 location: data.name,
@@ -93,7 +93,7 @@ const getCurrentWeatherData = () => {
 };
 
 window.addEventListener("load", () => {
-    isLoading = true
+    isLoading = true;
     getCurrentWeatherData();
 });
 
@@ -105,6 +105,9 @@ document.querySelector(".app-foot__btn.app-foot__btn--search").onclick = () => {
 };
 
 const handleSearchLocation = () => {
+    isLoading = true;
+    handleLoading();
+
     const searchInput = document.querySelector(".location__input").value;
     const locationApi = `https://api.api-ninjas.com/v1/city?name=${searchInput}`;
     fetch(locationApi, { 
@@ -137,11 +140,13 @@ mainContent.onclick = () => {
     }
 };
 
+
 //Back to home function
 document.querySelector(".app-foot__btn.app-foot__btn--home").onclick = () => {
     handleStyleButton(".app-foot__btn.app-foot__btn--home");
     getCurrentWeatherData();
 };
+
 
 //Change dark/light theme
 const handleStyleTheme = () => {
