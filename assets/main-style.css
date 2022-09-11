@@ -25,6 +25,11 @@ button:focus {
     border-radius: 50px;
 }
 
+#weather-app.light {
+    background-color: var(--white);
+    color: var(--primary);
+}
+
 .app__head {
     position: relative;
     display: flex;
@@ -64,18 +69,34 @@ button:focus {
     border-radius: 4px;
 }
 
+#weather-app.light .location__input {
+    background-color: var(--white);
+    border-color: var(--primary);
+}
+
 .location__input:focus {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
+#weather-app.light .location__input:focus {
+    background-color: var(--primary);
+}
+
 .location__btn {
     font-size: 18px;
-    border: transparent;
+    border: 1px solid transparent;
     outline: none;
     background: var(--hover-color);
     color: var(--white);
     padding: 4px 10px;
     border-radius: 6px;
+}
+
+#weather-app.light .location__btn {
+    background: var(--white);
+    color: var(--primary);
+    border-color: var(--primary);
+
 }
 
 .app-head__theme {
@@ -86,6 +107,18 @@ button:focus {
     background: var(--hover-color);
     padding: 4px;
     border-radius: 20px;
+    border: 1px solid transparent;
+}
+
+#weather-app.light .app-head__theme {
+    background: var(--white);
+    border-color: var(--primary);
+
+}
+
+#weather-app.light .theme__select-btn {
+    color: var(--primary);
+
 }
 
 .theme__select-btn {
@@ -106,6 +139,13 @@ button:focus {
 .theme__select-btn.active,
 .theme__select-btn:hover {
     background-color: var(--white);
+    color: var(--active-color) !important;
+    border-radius: 50%;
+}
+
+#weather-app.light .theme__select-btn.active,
+.theme__select-btn:hover {
+    background-color: var(--primary);
     color: var(--active-color);
     border-radius: 50%;
 }
@@ -171,8 +211,14 @@ button:focus {
     display: flex;
     justify-content: space-between;
     padding: 16px 30px;
+    border: 1px solid transparent;
     border-radius: 20px;
     background-color: var(--hover-color);
+}
+
+#weather-app.light .app__foot {
+    background-color: var(--white);
+    border-color: var(--primary);
 }
 
 .app-foot__btn {
@@ -181,6 +227,17 @@ button:focus {
     background: transparent;
     border: none;
     outline: none;
+}
+
+#weather-app.light .app-foot__btn.active,
+#weather-app.light .app-foot__btn:hover,
+.app-foot__btn.active,
+.app-foot__btn:hover {
+    color: var(--active-color);
+}
+
+#weather-app.light .app-foot__btn {
+    color: var(--primary);
 }
 
 .app-foot__btn:hover {

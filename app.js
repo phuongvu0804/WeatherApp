@@ -15,6 +15,7 @@ const mainContent = document.querySelector(".content__main-info");
 
 let currentTempData = {}
 let isCelcius = true;
+let darkTheme = true;
 
 const convertTempToCel = (temp) => {
     return Math.round(temp - 273.15)
@@ -42,6 +43,16 @@ const handleDisplayError = (error) => {
     console.log(error)
     errorMsg.classList.add("d-block");
     errorMsg.innerText = error;
+}
+
+const handleStyleButton = (buttonClass) => {
+    const buttons = document.querySelectorAll(".app-foot__btn");
+    buttons.forEach((button) => {
+        if (button.className.includes("active")) {
+            button.classList.remove("active")
+        }
+    })
+    document.querySelector(buttonClass).classList.add("active")
 }
 
 const fetchWeatherData = (lat, lon) => {
@@ -87,6 +98,7 @@ window.addEventListener("load", () => {
 
 //Search location
 document.querySelector(".app-foot__btn.app-foot__btn--search").onclick = () => {
+    handleStyleButton(".app-foot__btn.app-foot__btn--search");
     locationSelection.focus();
 }
 
@@ -110,7 +122,7 @@ const handleSearchLocation = () => {
 }
 
 //Change from Celsius to Fahrenheit
-mainContent.onclick = () => {
+mainContent.onclick = () => { 
     if (isCelcius) {
         isCelcius= !isCelcius;
         const fahTemp = convertTempToFah(currentTempData.temp);
@@ -123,8 +135,21 @@ mainContent.onclick = () => {
     }
 } 
 
-
 //Back to home function
 document.querySelector(".app-foot__btn.app-foot__btn--home").onclick = () => {
+    handleStyleButton(".app-foot__btn.app-foot__btn--home")
     getCurrentWeatherData();
+}
+
+//Change dark/light theme
+const handleChangeTheme = (theme) => {    
+    if (theme) {
+        darkTheme = !darkTheme;
+        document.querySelector("#weather-app").classList.remove("light")
+
+    } else {
+        darkTheme = !darkTheme;
+        document.querySelector("#weather-app").classList.add("light")
+
+    }
 }
