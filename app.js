@@ -11,6 +11,10 @@ const cloudData = document.querySelector(".sub-info.sub-info--cloud .sub-info__c
 const feelLikeData = document.querySelector(".sub-info.sub-info--feel-like .sub-info__content h3");
 const locationSelection = document.querySelector(".location__input");
 const errorMsg = document.querySelector(".app__msg--error");
+const mainContent = document.querySelector(".content__main-info");
+
+let currentTempData = {}
+let isCelcius = true;
 
 const convertTempToCel = (temp) => {
     return Math.round(temp - 273.15)
@@ -46,6 +50,14 @@ const fetchWeatherData = (lat, lon) => {
     fetch(weatherApi)
         .then((response) => response.json())
         .then((data) =>{
+            currentTempData = {
+                location: data.name,
+                temp: data.main.temp,
+                weather: data.weather[0].main,
+                wind: data.wind.speed,
+                cloud: data.clouds.all,
+                feelLike: data.main.feels_like
+            }
             handleDisplayData(data);
         })
         .catch((error) => {
@@ -87,3 +99,17 @@ const handleSearchLocation = () => {
         })
         .catch((error) => handleDisplayError(error))
 }
+
+//Change from Celsius to Fahrenheit
+mainContent.onclick = () => {
+    if (isCelcius) {
+        isCelcius= !isCelcius;
+        const fahTemp = convertTempToFah(currentTempData.temp);
+        currentTemp.innerText = fahTemp + "°F";
+    } else {
+        isCelcius = !isCelcius;
+        const celTemp = convertTempToCel(currentTempData.temp);
+        currentTemp.innerText = celTemp + "°C";
+
+    }
+} 
