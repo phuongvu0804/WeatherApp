@@ -1,14 +1,12 @@
 
 
-import { convertKelvinToCel, convertFahToCel, convertCelToFah } from "./constants.js";
+import { convertKelvinToCel, convertFahToCel, convertCelToFah, profileBtn, searchHistory } from "./constants.js";
 
 
 //For profile page
 const { pathname } = window.location;
 let isCelcius = true;
 
-const profileBtn = document.querySelector(".app-foot__btn.app-foot__btn--profile");
-const searchHistory = document.querySelector(".profile__search-history-list");
 const displayCurrentLocation = (data) => {
     //Display current location's weather
     document.querySelector(".profile__weather-card--curent .weather-card__title").innerText = data.location;
@@ -26,7 +24,7 @@ const renderHTMLs = () => {
     
 };
 
-
+//Display history
 if (pathname === "/profile.html") {
     profileBtn.classList.add("active");
 

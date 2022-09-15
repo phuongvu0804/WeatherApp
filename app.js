@@ -193,12 +193,20 @@ document.querySelector(".location__btn").onclick = () => {
     })
         .then(response => response.json())
         .then(data => {
+            //If location is found
             if (data.length) {
                 const location = data[0];
         
                 //Save searching data to local storage
                 fetchWeatherData(location.latitude, location.longitude, "search");
-            }
+            } else { // If no location is found
+
+                isLoading = false;
+                handleLoading();
+                
+                document.querySelector(".app__content").innerHTML = "<h3>No location is found</h3>";
+            };
+
         })
         .catch((error) => handleDisplayError(error));
 };
