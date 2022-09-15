@@ -51,10 +51,8 @@ const handleChangeTheme = (theme) => {
         darkTheme = true;
         handleStyleTheme();
         document.querySelector(".weather-app").classList.remove("light");
-        console.log("dark")
 
     } else {
-        console.log("light")
         darkTheme = false;
         handleStyleTheme();
         document.querySelector(".weather-app").classList.add("light");

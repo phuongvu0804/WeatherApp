@@ -89,7 +89,6 @@ const handleCheckHistory = (locationName) => {
     const localStorageHistory = JSON.parse(localStorage.getItem("searchHistory"));
 
     let isExisted = false;
-    console.log(localStorageHistory.indexOf(locationName))
     localStorageHistory.forEach((item) => {
         if (item.location === locationName) {
             return isExisted = true;
@@ -107,7 +106,6 @@ const fetchWeatherData = (lat, lon, type) => {
         .then((data) => {
             isLoading = false;
             handleLoading();
-            console.log(data, "search");
             if (type === "current") {
                 currentTempData = {
                     location: data.name,
@@ -153,7 +151,6 @@ const fetchWeatherData = (lat, lon, type) => {
                 };
 
             };
-            console.log(data, "display");
 
             handleDisplayData(data);
         })
@@ -203,8 +200,6 @@ handleLoading();
 window.addEventListener("load", () => {
     isLoading = true;
     getCurrentWeatherData();
-    console.log("load")
-
 });
 
 
