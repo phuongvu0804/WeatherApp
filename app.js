@@ -1,24 +1,28 @@
-import { convertKelvinToCel, convertKelvinToFah, convertToKmPerHour } from "./constants.js";
+import { 
+    apiKeyWeather,
+    apiKeyLocation,
+    app, 
+    currentLocation, 
+    currentWeather, 
+    currentTemp, 
+    windData, 
+    cloudData, 
+    feelLikeData, 
+    locationSelection, 
+    errorMsg, 
+    mainContent,
+    convertKelvinToCel,
+    convertKelvinToFah, 
+    convertToKmPerHour
+} from "./constants.js";
 
-const apiKeyWeather = "770de780ae88163d36266e3e2b0835f2";
-const apiKeyLocation = "T5LHuF1z6+qQ3rY3oJ993w==NG6SjZHK9qkF26q6";
-
-const app = document.querySelector(".weather-app");
-const currentLocation = document.querySelector(".content__location");
-const currentWeather = document.querySelector(".main-info__content h2");
-const currentTemp = document.querySelector(".main-info__content p");
-const windData = document.querySelector(".sub-info.sub-info--wind .sub-info__content h3");
-const cloudData = document.querySelector(".sub-info.sub-info--cloud .sub-info__content h3");
-const feelLikeData = document.querySelector(".sub-info.sub-info--feel-like .sub-info__content h3");
-const locationSelection = document.querySelector(".location__input");
-const errorMsg = document.querySelector(".app__msg--error");
-const mainContent = document.querySelector(".content__main-info");
 
 let currentTempData = {};
 let searchHistory = [];
 let isCelcius = true;
 let isLoading = true;
 let darkTheme = true;
+
 
 const handleDisplayData = (data) => {
     currentLocation.innerText = data.name;
@@ -178,8 +182,7 @@ document.querySelector(".location__btn").onclick = () => {
     isLoading = true;
     handleLoading();
 
-    const searchInput = document.querySelector(".location__input").value;
-
+    const searchInput = document.querySelector(".location__input").value.replaceAll(" ","");
     //Get searched info
     const locationApi = `https://api.api-ninjas.com/v1/city?name=${searchInput}`;
     fetch(locationApi, { 
