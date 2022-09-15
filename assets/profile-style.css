@@ -16,22 +16,18 @@
 .profile__img i {
     margin: auto;
     font-size: 50px;
-}
-
-.profile__current-weather {
+    color: var(--white);
 
 }
 
 .profile__sub-title {
     font-size: 26px;
-    font-weight: 500;;
-
+    font-weight: 500;
 }
 
 .profile__content {
     margin: calc(var(--app-x-padding) + var(--app-head-height) + 30px) 0;
 }
-
 
 .profile__weather-card {
     display: flex;
@@ -42,6 +38,13 @@
     padding: 10px 20px;
     border-radius: 10px;
     background-color: var(--hover-color);
+    border: 1px solid transparent;
+
+}
+
+.weather-app.light .profile__weather-card {
+    border-color: var(--primary);
+    background-color: transparent;
 }
 
 .weather-card__title {

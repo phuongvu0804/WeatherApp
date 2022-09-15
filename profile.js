@@ -1,6 +1,6 @@
 
 
-import { convertKelvinToCel, convertFahToCel, convertCelToFah, profileBtn, searchHistory } from "./constants.js";
+import { convertKelvinToCel, convertFahToCel, convertCelToFah, profileBtn, searchHistory, searchBtn, handleStyleTheme, handleChangeTheme, lightThemeBtn, darkThemeBtn } from "./constants.js";
 
 
 //For profile page
@@ -56,3 +56,11 @@ historyCard.forEach(item => {
         };
     };
 });
+
+
+
+//Dark/light theme in profile page
+handleStyleTheme();
+
+lightThemeBtn.onclick = () => handleChangeTheme(false);
+darkThemeBtn.onclick = () => handleChangeTheme(true);

@@ -2,18 +2,18 @@ import {
     apiKeyWeather,
     apiKeyLocation,
     app, 
-    currentLocation, 
-    currentWeather, 
     currentTemp, 
-    windData, 
-    cloudData, 
-    feelLikeData, 
     locationSelection, 
     errorMsg, 
     mainContent,
     convertKelvinToCel,
     convertKelvinToFah, 
-    convertToKmPerHour
+    convertToKmPerHour,
+    searchBtn,
+    handleStyleTheme,
+    handleChangeTheme,
+    lightThemeBtn,
+    darkThemeBtn
 } from "./constants.js";
 
 
@@ -21,18 +21,54 @@ let currentTempData = {};
 let searchHistory = [];
 let isCelcius = true;
 let isLoading = true;
-let darkTheme = true;
 
 
 const handleDisplayData = (data) => {
-    currentLocation.innerText = data.name;
-    currentTemp.innerText = `${convertKelvinToCel(data.main.temp)}°C`;
-    currentWeather.innerText = data.weather[0].main
-
-    windData.innerText = `${convertToKmPerHour(data.wind.speed)} km/h`;
-    cloudData.innerText = `${data.clouds.all}%`;
-    feelLikeData.innerText = `${convertKelvinToCel(data.main.feels_like)}°C`;
-}
+    document.querySelector(".app__content").innerHTML = `
+        <h1 class="content__title">Today's report</h1>
+        <p class="content__location">${data.name}</p>
+        <div class="app__msg--error alert alert-danger" role="alert"></div>
+        <div class="content__main-info">
+            <div class="main-info__img">
+                <img src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png" alt="">
+            </div>
+            <div class="main-info__content">
+                <h2>${data.weather[0].main}</h2>
+                <p>${convertKelvinToCel(data.main.temp)}°C</p>
+            </div>
+        </div>
+        <ul class="content__sub-info">
+            <li class="sub-info sub-info--wind">
+                <div class="sub-info__img">
+                    <i class="fa-sharp fa-solid fa-wind"></i>
+                </div>
+                <div class="sub-info__content">
+                    <h3>${convertToKmPerHour(data.wind.speed)} km/h</h3>
+                    <p>Wind</p>
+                </div>
+            </li>
+            <li class="sub-info sub-info--cloud">
+                <div class="sub-info__img">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+                <div class="sub-info__content">
+                    <h3>${data.clouds.all}%</h3>
+                    <p>Cloud</p>
+                </div>
+            </li>
+            <li class="sub-info sub-info--feel-like">
+                <div class="sub-info__img">
+                    <i class="fa-solid fa-temperature-quarter"></i>
+                </div>
+                <div class="sub-info__content">
+                    <h3>${convertKelvinToCel(data.main.feels_like)}°C</h3>
+                    <p>Feel like</p>
+                </div>
+            </li>
+            
+        </ul>
+    `;
+};
 
 const handleDisplayError = (error) => {
     errorMsg.classList.add("d-block");
@@ -62,6 +98,7 @@ const handleCheckHistory = (locationName) => {
     return isExisted;
 }
 
+//Get weather info based on longitude and latitude
 const fetchWeatherData = (lat, lon, type) => {
     const weatherApi = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKeyWeather}`
 
@@ -69,9 +106,8 @@ const fetchWeatherData = (lat, lon, type) => {
         .then((response) => response.json())
         .then((data) => {
             isLoading = false;
-
             handleLoading();
-
+            console.log(data, "search");
             if (type === "current") {
                 currentTempData = {
                     location: data.name,
@@ -90,9 +126,7 @@ const fetchWeatherData = (lat, lon, type) => {
                 //Check if user has searched before
                 if (localStorageHistory) {
                     const isExisted = handleCheckHistory(data.name);
-                    console.log(isExisted)
                     if (!isExisted) {
-                        console.log("not existed")
                         searchHistory = [...localStorageHistory, {
                             location: data.name,
                             temp: data.main.temp,
@@ -106,7 +140,6 @@ const fetchWeatherData = (lat, lon, type) => {
                     };
 
                 } else {
-                    console.log("no ls")
                     searchHistory = [{
                         location: data.name,
                         temp: data.main.temp,
@@ -119,8 +152,8 @@ const fetchWeatherData = (lat, lon, type) => {
                     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
                 };
 
-
             };
+            console.log(data, "display");
 
             handleDisplayData(data);
         })
@@ -130,6 +163,7 @@ const fetchWeatherData = (lat, lon, type) => {
 
 }
 
+//Get current longitude and latitude
 const getCurrentWeatherData = () => {
       //If user allows to locate position
       if(navigator.geolocation) {
@@ -169,6 +203,8 @@ handleLoading();
 window.addEventListener("load", () => {
     isLoading = true;
     getCurrentWeatherData();
+    console.log("load")
+
 });
 
 
@@ -178,7 +214,7 @@ document.querySelector(".app-foot__btn.app-foot__btn--search").onclick = () => {
     locationSelection.focus();
 };
 
-document.querySelector(".location__btn").onclick = () => {
+searchBtn.onclick = () => {
     isLoading = true;
     handleLoading();
 
@@ -194,16 +230,17 @@ document.querySelector(".location__btn").onclick = () => {
         .then(response => response.json())
         .then(data => {
             //If location is found
-            if (data.length) {
+            if (data.length > 0) {
                 const location = data[0];
         
                 //Save searching data to local storage
                 fetchWeatherData(location.latitude, location.longitude, "search");
-            } else { // If no location is found
-
+            } else { //If no location is found
                 isLoading = false;
                 handleLoading();
-                
+
+                // const h3 = document.createElement("h3");
+                // h3.textContent = "No location is found";
                 document.querySelector(".app__content").innerHTML = "<h3>No location is found</h3>";
             };
 
@@ -234,33 +271,7 @@ document.querySelector(".app-foot__btn.app-foot__btn--home").onclick = () => {
 
 
 //Change dark/light theme
-const handleStyleTheme = () => {
-    if (darkTheme) {
-        document.querySelector(".theme__select-btn#dark").classList.add("active");
-        document.querySelector(".theme__select-btn#light").classList.remove("active");
-    } else {
-        document.querySelector(".theme__select-btn#dark").classList.remove("active");
-        document.querySelector(".theme__select-btn#light").classList.add("active");
-    }
-
-};
-
 handleStyleTheme();
 
-const handleChangeTheme = (theme) => {   
-    console.log(theme)
-    if (theme) {
-        darkTheme = true;
-        handleStyleTheme();
-        document.querySelector(".weather-app").classList.remove("light");
-
-    } else {
-        darkTheme = false;
-        handleStyleTheme();
-        document.querySelector(".weather-app").classList.add("light");
-
-    };
-};
-
-document.querySelector(".theme__select-btn#light").onclick = () => handleChangeTheme(false);
-document.querySelector(".theme__select-btn#dark").onclick = () => handleChangeTheme(true);
+lightThemeBtn.onclick = () => handleChangeTheme(false);
+darkThemeBtn.onclick = () => handleChangeTheme(true);

@@ -22,20 +22,11 @@
     <div class="weather-app weather-app--profile">
         <div>
             <div class="app__head">
-                <div class="app-head__location">
-                    <div class="location__select-btn">
-                        <i class="location-select-btn__icon location-select-btn__icon--location fa-sharp fa-solid fa-location-dot"></i>
-                        <input class="location__input" />
-                        <button class="location__btn" type="submit" onclick="handleSearchLocation()">
-                            <i class="location-select-btn__icon fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </div>
-                </div>
                 <div class="app-head__theme">
-                    <button class="theme__select-btn" id="light" onclick="handleChangeTheme(false)">
+                    <button class="theme__select-btn theme__select-btn--light" onclick="handleChangeTheme(false)">
                         <i class="theme-select-btn__icon fa-sharp fa-solid fa-sun"></i>
                     </button>
-                    <button class="theme__select-btn" id="dark" onclick="handleChangeTheme(true)">
+                    <button class="theme__select-btn theme__select-btn--dark" onclick="handleChangeTheme(true)">
                         <i class="theme-select-btn__icon fa-solid fa-moon"></i>
                     </button>
                 </div>
